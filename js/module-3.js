@@ -450,3 +450,39 @@ function makeTask(data) {
 }
 
 console.log(makeTask({ priority: 'Low', text: 'Choose shampoo' }));
+
+// TASK 31 Используя операцию rest дополни код функции add() так, чтобы она принимала любое количество аргументов, считала и возвращала их сумму.
+function add(...args) {
+    let total = 0;
+    for (const arg of args) {
+        total += arg;
+    }
+    return total;
+}
+
+// TASK 32 Функция addOverNum() считает сумму всех аргументов. Измени параметры и тело функции addOverNum() так, чтобы она считала сумму только тех аргументов, которые больше чем заданное число. Это число должно быть первым параметром функции.
+function addOverNum(firstArg, ...args) {
+    let total = 0;
+
+    for (const arg of args) {
+        if (arg > firstArg) {
+            total += arg;
+        }
+    }
+    return total;
+}
+
+// TASK 33 Функция findMatches() принимает произвольное количество аргументов. Первым аргументом всегда будет массив чисел, а остальные аргументы будут просто числами.
+// Дополни код функции так, чтобы она возвращала новый массив matches, в котором будут только те аргументы, начиная со второго, которые есть в массиве первого аргумента.
+// Например, findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7) должна вернуть массив [1, 2], потому что только они есть в массиве первого аргумента.
+// Change code below this line
+function findMatches(arrayArg, ...args) {
+    const matches = []; // Don't change this line
+    for (const array of arrayArg) {
+        if (args.includes(arrayArg)) {
+            matches.push(arrayArg);
+        }
+    }
+    // Change code above this line
+    return matches;
+}
