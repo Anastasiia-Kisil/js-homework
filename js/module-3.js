@@ -475,14 +475,84 @@ function addOverNum(firstArg, ...args) {
 // TASK 33 Функция findMatches() принимает произвольное количество аргументов. Первым аргументом всегда будет массив чисел, а остальные аргументы будут просто числами.
 // Дополни код функции так, чтобы она возвращала новый массив matches, в котором будут только те аргументы, начиная со второго, которые есть в массиве первого аргумента.
 // Например, findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7) должна вернуть массив [1, 2], потому что только они есть в массиве первого аргумента.
-// Change code below this line
-function findMatches(arrayArg, ...args) {
+function findMatches(...args) {
     const matches = []; // Don't change this line
-    for (const array of arrayArg) {
-        if (args.includes(arrayArg)) {
-            matches.push(arrayArg);
+    for (let i = 1; i < args.length; i += 1) {
+        if (args[0].includes(args[i])) {
+            matches.push(args[i]);
         }
     }
-    // Change code above this line
     return matches;
 }
+
+console.log(findMatches([10, 24, 41, 6, 9, 19], 24, 11, 9, 23, 41));
+
+// TASK 34 Добавь объекту bookShelf ещё два метода, которые пока что будут возвращать просто строки по аналогии с getBooks() и addBook(bookName).
+// Метод removeBook(bookName) будет удалять книгу по имени. Возвращает строку "Deleting book <имя книги>", где <имя книги> это значение параметра bookName.
+// Метод updateBook(oldName, newName) будет обновлять название книги на новое. Возвращает строку "Updating book <старое имя> to <новое имя>", где <старое имя> и <новое имя>это значения параметров oldName и newName соотвественно.
+const bookShelf = {
+    books: ['The last kingdom', 'The guardian of dreams'],
+    getBooks() {
+        return 'Returning all books';
+    },
+    addBook(bookName) {
+        return `Adding book ${bookName}`;
+    },
+    removeBook(bookName) {
+        return `Deleting book ${bookName}`;
+    },
+    updateBook(oldName, newName) {
+        return `Updating book ${oldName} to ${newName}`;
+    },
+};
+
+console.log(bookShelf.updateBook('Sands of dune', 'Dune'));
+
+// TASK 35 Дополни метод updateBook(oldName, newName) так, чтобы он изменял название книги с oldName на newName в свойстве books. Используй indexOf() для того, чтобы найти нужный элемент массива, и splice() для того чтобы заменить этот элемент
+const bookShelf = {
+    books: ['The last kingdom', 'Haze', 'The guardian of dreams'],
+    updateBook(oldName, newName) {
+        const bookIndex = this.books.indexOf(oldName);
+        this.books.splice(bookIndex, 1, newName);
+    },
+};
+
+// TASK 36
+const atTheOldToad = {
+    potions: [],
+};
+
+// TASK 37 Добавь объекту atTheOldToad метод getPotions(), который просто возвращает значение свойства potions.
+const atTheOldToad = {
+    potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+
+    getPotions() {
+        return this.potions;
+    },
+};
+
+// TASK 38 Дополни метод addPotion(potionName) так, чтобы он добавлял зелье potionName в конец массива зелий в свойстве potions.
+const atTheOldToad = {
+    potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+    addPotion(potionName) {
+        this.potions.push(potionName);
+    },
+};
+
+// TASK 39
+const atTheOldToad = {
+    potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+    removePotion(potionName) {
+        const indexName = this.potions.indexOf(potionName);
+        this.potions.splice(indexName, 1);
+    },
+};
+
+// TASK 40 Дополни метод updatePotionName(oldName, newName) так, чтобы он обновлял название зелья с oldName на newName, в массиве зелий в свойстве potions.
+const atTheOldToad = {
+    potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+    updatePotionName(oldName, newName) {
+        const potionIndex = this.potions.indexOf(oldName);
+        this.potions.splice(potionIndex, 1, newName);
+    },
+};
